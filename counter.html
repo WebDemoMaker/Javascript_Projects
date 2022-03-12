@@ -1,0 +1,303 @@
+<!-- In this video we create a simple slider which work on mouse up and down click event -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>Counter</title>
+</head>
+<style type="text/css">
+	body
+	{
+		padding: 0px;
+		margin: 0px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+		flex-direction: column;
+	}
+	#counter_box
+	{
+		padding: 30px;
+		background-color: #4D77FF;
+		color: #fff;
+		width: 50px;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		font-size: 40px;
+		font-weight: bold;
+		border-radius: 20px;
+
+		/*animation: moveup 0.2s linear 1;*/
+
+	}
+	.mouseupcls
+	{
+		animation: moveup 0.1s linear 1;
+	}
+		.mousedowncls
+	{
+		animation: movedown 0.1s linear 1;
+	}
+	#counter
+	{
+-webkit-user-drag: none;
+		user-drag: none!important; 
+user-select: none;
+/*z-index: -100;*/
+
+
+
+	}
+	.spanhidecls
+	{
+		animation: spanhide 0.1s linear 1;
+	}
+/*	#counter_box:hover
+	{
+		transform: translate(-50%,-90%);
+		transition: 0.3s;
+		opacity: 0;
+
+box-shadow: 0px 70px 5px darkcyan;
+
+	}*/
+/*::selection { background: transparent; }*/
+@keyframes movedown
+{
+	0%{
+			transform: translate(-50%,-50%);
+		
+		/*opacity: 0;*/
+	}
+	100%{
+			transform: translate(-50%,-0%);
+
+		opacity: 0;
+		box-shadow: 0px -70px 5px cyan;
+	}
+}
+
+@keyframes moveup
+{
+	0%{
+			transform: translate(-50%,-50%);
+		/*transition: 0.3s;*/
+		/*opacity: 0;*/
+		/*height: 50px;*/
+	}
+		50%{
+			transform: translate(-50%,-80%);
+		transition: 0.3s;
+		opacity: 0.5;
+
+box-shadow: 0px 70px 5px cyan;
+	}
+	100%{
+			transform: translate(-50%,-90%);
+		transition: 0.3s;
+		opacity: 0;
+
+box-shadow: 0px 70px 5px cyan;
+	}
+}
+
+@keyframes spanhide
+{
+	0%{
+		opacity: 0.8;
+	}
+		50%{
+		opacity: 0.2;
+	}
+		100%{
+		opacity: 1;
+	}
+}
+</style>
+<!-- lets improve the ui -->
+<body ondragstart="return false;" ondrop="return false;">
+<div style="position: relative;top: -100px;font-size: 50px;">
+	<i class="fa-solid fa-circle-arrow-up" style="color:#0E3EDA"></i>
+</div>
+	<div id="counter_box" onclick="return false;">
+		<p id="counter" draggable="true">0</p>
+		
+	</div>
+<div style="position: relative;bottom: -100px;font-size: 50px;">
+	<i class="fa-solid fa-circle-arrow-down" style="color:#0E3EDA"></i>
+</div>
+<script type="text/javascript">
+// if the difference is +ve it means mouse moved upward otherwise direction is downward
+
+
+let x_down,x_up;
+let counter=0
+document.addEventListener("mousedown", function(event) {
+	console.log("mousedown screenY coordinate ",event.screenY)
+x_down=event.screenY
+});
+
+document.addEventListener("mouseup", function(event) {
+console.log("mouseup screenY coordinate ",event.screenY)
+x_up=event.screenY
+console.log("difference b/w mouse up & down ", x_down - x_up)
+if(x_up != x_down)
+{
+	// if the mouse moved in upward direction then add mouseupcls(upward animation class for div)
+
+	// it is currently not working after first run so we need to remove the previously added animation cls and we will do it inside settimeout
+if(x_down - x_up > 0 )
+{
+
+
+	
+	document.getElementsByTagName("p")[0].classList.add("spanhidecls")
+
+	document.getElementById('counter_box').classList.add("mouseupcls")
+
+	counter+=1
+
+}
+else
+{
+		// if the mouse moved in upward direction then add mouseupcls(downward animation class for div)
+
+	if(counter>0)
+	{
+			document.getElementById('counter_box').classList.add("mousedowncls")
+	counter-=1
+	}
+}
+	document.getElementById("counter").innerText=counter
+
+}
+
+removeClass()
+});
+
+document.getElementsByClassName("fa-circle-arrow-up")[0].addEventListener("click",upCounter)
+document.getElementsByClassName("fa-circle-arrow-down")[0].addEventListener("click",downCounter)
+
+function upCounter()
+{
+
+	document.getElementsByTagName("p")[0].classList.add("spanhidecls")
+
+	document.getElementById('counter_box').classList.add("mouseupcls")
+
+	counter+=1
+	document.getElementById("counter").innerText=counter
+	removeClass()
+}
+
+function downCounter()
+{
+
+	if(counter>0)
+	{
+			document.getElementById('counter_box').classList.add("mousedowncls")
+	counter-=1
+	document.getElementById("counter").innerText=counter
+	}
+	removeClass()
+}
+
+function removeClass()
+{
+		setTimeout(function(){
+	document.getElementById('counter_box').classList.remove("mousedowncls")
+	document.getElementById('counter_box').classList.remove("mouseupcls")
+
+	
+	document.getElementsByTagName("p")[0].classList.remove("spanhidecls")
+},100)
+}
+
+
+// 	let element=document.getElementById('counter_box')
+// 	let moved
+// let downListener = () => {
+// 	console.log("move downListener Listener")
+//   moved = false
+// }
+// element.addEventListener('mousedown', downListener)
+// let moveListener = () => {
+// 	console.log("move Listener")
+//   moved = true
+// }
+// element.addEventListener('mousemove', moveListener)
+// let upListener = () => {
+//   if (moved) {
+//     console.log('moved')
+//   } else {
+//     console.log('not moved')
+//   }
+// }
+// element.addEventListener('mouseup', upListener)
+
+// // release memory
+// element.removeEventListener('mousedown', downListener)
+// element.removeEventListener('mousemove', moveListener)
+// element.removeEventListener('mouseup', upListener)
+// 	let clickTime;
+// 	document.getElementById('counter_box').addEventListener("click",function(){
+// 		// console.log("clicked")
+// 		  if (new Date() - clickTime < 150) {
+//     // click
+//     console.log("clicked")
+//   } else {
+//     // pause
+//     console.log("pause")
+//   }
+
+// 	})
+// 	document.getElementById('counter_box').addEventListener("mouseup",function(event){
+// 		clickTime = new Date();
+// 			// document.getElementById('counter_box').style.pointerEvents="auto";
+// 		// event.preventDefault()
+	
+//      console.log("mouse up")
+// });
+
+// document.getElementById('counter_box').addEventListener('click', (event) => {
+// 	console.log(new Date() -  clickTime)
+//   if (new Date() - clickTime < 150) {
+//     // click
+//     console.log("click")
+//   } else {
+//     // pause
+//     console.log("pause")
+
+//   }
+// });
+
+// document.getElementById('counter_box').addEventListener('click', function(e){
+//     console.log('click');
+// });
+
+// function captureClick(e) {
+//     e.stopPropagation(); // Stop the click from being propagated.
+//     // console.log('click captured');
+//     window.removeEventListener('click', captureClick, true); // cleanup
+// }
+		
+	// 	document.getElementById('counter_box').addEventListener("mousedown",function(event){
+	// 		document.getElementById('counter_box').style.pointerEvents="none";
+	// 		// event.preventDefault()
+	// 		// event.stopPropagation()
+	// 		console.log("mousedown")
+	// })
+	
+</script>
+</body>
+</html>
