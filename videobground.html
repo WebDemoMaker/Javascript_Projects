@@ -2,4 +2,137 @@
 
 before moving further check out my prvious video on how to create a custom checkbox to get a better understanding
  -->
- 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Video background</title>
+</head>
+<style type="text/css">
+    body
+    {
+        padding: 0px;
+        margin: 0px;
+    }
+    video
+    {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+    }
+
+    div
+    {
+        width: 40px;
+        height: 20px;
+        background-color: skyblue;
+        border-radius: 10px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        padding: 0px;
+
+    }
+    span
+    {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: blue;
+        border-radius: 50%;
+        position: relative;
+        left: 0px;
+        transition: 0.5s;
+        z-index: 10;
+    }
+
+    .close
+    {
+        left: 0px;
+    }
+
+    .open
+    {
+        left: calc(40px - 20px);
+    }
+
+    .fa-sun
+    {
+        color: yellow;
+        position: absolute;
+       left: 22px;
+       top: 1.5px;
+       opacity: 1;
+       transition: 0.4s;
+
+    }
+
+    .fa-moon
+    {
+        color: blue;
+        position: absolute;
+       left: 0px;
+        top: 1.5px;
+          opacity: 1;
+       transition: 0.4s;
+
+    }
+        .no-moon,.no-sun
+    {
+        /*left: -22px;*/
+        /*transition: 3s;*/
+        opacity: 0;
+    }
+    
+
+
+</style>
+<body>
+<video src="C:\xampp\htdocs\HTML_CSS_JS_PROJECTS\Ink - 67358.mp4" autoplay muted loop></video>
+    <div>
+        <i class="fa-solid fa-moon"></i>
+        <span></span>
+        <i class="fa-solid fa-sun"></i>
+    </div>
+
+        <script type="text/javascript">
+        document.getElementsByTagName("div")[0].addEventListener("click",function(e){
+            console.log(e.target.classList)
+
+            let elem = document.getElementsByTagName("span")[0];
+            let mydiv=  document.getElementsByTagName("div")[0];
+
+            if(elem.classList.contains("open"))
+            {
+                elem.classList.remove("open")
+                elem.classList.add("close")
+                mydiv.style.backgroundColor="skyblue"
+                    document.getElementsByClassName("fa-sun")[0].classList.remove("no-sun")
+                    document.getElementsByClassName("fa-moon")[0].classList.add("no-moon")
+                    document.getElementsByTagName("video")[0].pause();
+
+
+
+            }
+            else
+            {
+                elem.classList.remove("close")
+                elem.classList.add("open")
+                mydiv.style.backgroundColor="white"
+                document.getElementsByClassName("fa-moon")[0].classList.remove("no-moon")
+                    document.getElementsByClassName("fa-sun")[0].classList.add("no-sun")
+                    document.getElementsByTagName("video")[0].play()
+                    document.getElementsByTagName('video')[0].playbackRate = 6.0;
+            }
+
+
+            
+
+        })
+    </script>
+</body>
+</html>
