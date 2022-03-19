@@ -1,0 +1,147 @@
+<!-- in this video we are going to create a simple animated modal as shown here -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Modal</title>
+</head>
+<style type="text/css">
+	body
+	{
+		padding: 0px;
+		margin: 0px;
+	}
+	.outer_container
+	{
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+		position: fixed;
+		top: 0px;
+	}
+	.card
+	{
+		padding: 0px;
+		background-color: orange;
+		margin: auto;
+		width: 60%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		border-radius: 10px;
+		padding: 30px 0px;
+		display: none;
+		animation: movedown 0.3s linear 1;
+
+	}
+	ul
+	{
+		list-style-type: none;
+		padding: 0px;
+		margin: 0px;
+	}
+	.card div
+	{
+		text-align: center;
+	}
+	.bottom
+	{
+		display: flex;
+		justify-content:center ;
+		align-items: center;
+		padding: 0px 10px;
+	}
+	input
+	{
+		padding: 6px 15px;
+		border: 1px solid grey;
+		outline: none;
+		width: 90%;
+	}
+	button
+	{
+		padding: 5px;
+		margin-left: 5px;
+		background-color: magenta;
+		outline: none;
+		border: 1px solid white;
+		color: white;
+
+	}
+	.hide
+	{
+		transition: 0.2s;
+		transform: scale(0);
+		opacity: 0.2;
+		background-color: transparent;
+	}
+
+	.show
+	{
+			transition: 0.2s;
+		transform: scale(0);
+		transform: scale(1);
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+	@keyframes movedown
+	{
+		0%{
+			top: -100%;
+
+		}
+				100%{
+			top: 50%;
+			
+		}
+	}
+</style>
+<body>
+	<h1>This is  a  test content </h1>
+	<button id="show">Show modal</button>
+<div class="outer_container hide">
+	<div class="card" >
+		<span style="position:absolute;right: 0px;top: 0px;cursor: pointer;background-color: #fff;" id="close">❌</span>
+		<div>
+			<img src="https://cdn.pixabay.com/photo/2017/06/05/07/58/butterfly-2373175__340.png" style="margin: 0px;width: 60%;">
+		</div>
+		<div>
+			<h4>Lorem ipsum dolor sit amet, consectetur adipisicing </h4>
+			<ul>
+				<li>⭐- Lorem ipsum dolor sit amet, consectetur adipisicing</li>
+				<li>⭐- Lorem ipsum dolor sit amet, consectetur adipisicing</li>
+				<li>⭐- Lorem ipsum dolor sit amet, consectetur adipisicing</li>
+			</ul>
+		</div>
+		<div class="bottom">
+			<input type="text" name="newsletter" placeholder="newsletter">
+			<button class="btn">Subscribe</button>
+		</div>
+	</div>
+
+	</div>
+	<script type="text/javascript">
+		document.getElementById("close").addEventListener("click",function(){
+
+
+	let elem= document.getElementsByClassName("outer_container")[0];
+	let card =document.getElementsByClassName("card")[0];
+	card.style.display="none"
+			elem.classList.remove("show")
+ 			elem.classList.add("hide")
+
+		})
+
+				document.getElementById("show").addEventListener("click",function(){
+ 			let elem= document.getElementsByClassName("outer_container")[0];
+ 			let card =document.getElementsByClassName("card")[0];
+ 				card.style.display="block"
+ 			elem.classList.remove("hide")
+			elem.classList.add("show")
+
+		})
+	</script>
+</body>
+</html>
