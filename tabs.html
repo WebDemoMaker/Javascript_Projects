@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>tabs</title>
+</head>
+<style type="text/css">
+	.container
+	{
+		position: relative;
+	}
+	.tabs
+	{
+		 font-size: 0;
+
+		 margin: 0px;
+		 padding: 0xp;
+		 
+	}
+	button
+	{
+		min-width: 100px;
+		outline: none;
+		border-radius: 0px;
+		border: 1px solid blue;
+		cursor: pointer;
+	}
+	.tab
+	{
+
+		background-color: cyan;
+		width: 70%;
+		min-height: 400px;
+		text-align: center;
+		display: block;
+		position: absolute;
+		top: 20px;
+		left: 0px;
+	}
+	.tab:nth-child(2)
+	{
+		background-color: orange;
+	}
+
+		.tab:nth-child(3)
+	{
+		background-color: greenyellow;
+	}
+	.opaqueanimation
+	{
+		animation: anime 0.4s ease-in-out 1;
+	}
+
+	@keyframes anime
+	{
+		0%{
+			opacity: 0;
+			left: -100%;
+		}
+			100%{
+			opacity: 1;
+			left: 0px;
+		}
+
+	}
+</style>
+<body>
+	<div class="container">
+	<div class="tabs">
+		<button data-index="0">English</button>
+		<button data-index="1">Hindi</button>
+		<button data-index="2">Maths</button>
+	</div>
+	<div style="background-color: #000; margin: 0px; padding: 0xp;">
+	<div class="tab">
+		<p>English vala content</p>
+	</div>
+	<div class="tab">
+		<p>Hindi vala content</p>
+	</div>
+	<div class="tab">
+		<p>Maths vala content</p>
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+
+var index=0
+var tabs= document.getElementsByClassName("tab");
+var buttons= document.getElementsByTagName("button");
+
+Array.from(buttons).map(btn=>{
+	btn.addEventListener("click",function(e){
+		let index = e.target.getAttribute("data-index")
+		showContent(index)
+	})
+})
+
+showContent(index)
+function showContent(num)
+{
+	for(let i=0;i<tabs.length;i++)
+	{
+		tabs[i].classList.remove("opaqueanimation")
+		tabs[i].style.display="none"
+	}
+	tabs[num].classList.add("opaqueanimation")
+	tabs[num].style.display="block"
+}
+
+
+
+
+</script>
+</body>
+</html>
