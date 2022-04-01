@@ -1,0 +1,157 @@
+<!-- In this video we are going to learn how to create a circular navbar  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+<style>
+body
+{
+background:#603601;
+
+}
+.navbar
+{
+width:250px;
+height:250px;
+border-radius:50%;
+background:transparent;
+
+/*margin:100px auto;*/
+
+cursor:pointer;
+text-align:center;
+font-size:2.75em;
+color:red;
+transition:0.24s 0.2s;
+position:relative;
+
+
+
+
+}
+.menu
+{
+position:relative;
+background:#CC9544;
+z-index:100;
+width:250px;
+height:250px;
+border-radius:50%;
+border: 2px solid black;
+padding:0px;
+margin:0px;
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+.menu li
+{
+transform: rotate(calc(360deg / 6 * var(--rot))) translateX(20px);
+position:absolute;
+left:-15px;
+top:108px;
+list-style-type:none;
+transform-origin:140px;
+transition: 0.8s;
+opacity: 1;
+}
+
+li a
+{
+display:block;
+transform: rotate(calc(360deg / -6 * var(--rot)));
+background:#fff;
+border-radius:50%;
+padding:0px;
+width:35px;
+height:35px;
+font-size:20px;
+
+
+}
+
+/*.menu:hover li
+{
+	transform: rotate(calc(360deg / 6 * var(--rot))) translateX(120px);
+	opacity: 0;
+}*/
+
+
+
+.close
+{
+transform: rotate(-50deg) translateX(120px)!important;
+	opacity: 0!important;
+}
+
+span{
+	z-index: 200;
+	display: flex;
+	height: 70px;
+	width: 70px;
+	background-color: #fff;
+	border-radius: 50%;
+	justify-content: center;
+	align-items: center;
+	transition: 0.5s;
+
+}
+
+.rotatespan
+{
+ transform: rotate(360deg)!important;
+}
+
+
+</style>
+
+<div class="navbar">
+<ul class="menu">
+	<span id="close">❌</span>
+<li style="--rot:0"><a href="#">📧</a></li>
+<li style="--rot:1"><a href="#">📧</a></li>
+<li style="--rot:2"><a href="#">📧</a></li>
+<li style="--rot:3"><a href="#">📧</a></li>
+<li style="--rot:4"><a href="#">📧</a></li>
+<li style="--rot:5"><a href="#">📧</a></li>
+
+</ul>
+</div>
+<script type="text/javascript">
+	document.getElementById('close').addEventListener("click",function(){
+		let sp = document.getElementsByTagName("span")[0]
+		let li_list = document.getElementsByTagName("li");
+		if(!li_list[0].classList.contains("close"))
+		{
+		for(i=0;i<li_list.length;i++)
+		{
+			li_list[i].classList.add("close")
+
+		}
+		sp.classList.add("rotatespan")
+		sp.innerText= "+"
+
+		}
+		else
+		{
+			console.log("else executed===")
+					for(i=0;i<li_list.length;i++)
+		{
+			li_list[i].classList.remove("close")
+
+		}
+
+			sp.classList.remove("rotatespan")
+			sp.innerText= "❌"
+		}
+
+	})
+
+</script>
+
+</body>
+</html>
