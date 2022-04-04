@@ -1,0 +1,132 @@
+<!-- in this video we will create a circle with 4 slices and a rectangle with 9 slices  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Circle & rectangle</title>
+</head>
+<style type="text/css">
+	body
+	{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		/*vh heigh may vary from 12-17px */
+		min-height: calc(100vh - 17px);
+		background-color: grey;
+	}
+	div
+	{
+		width: 300px;
+		height: 300px;
+		background-color:rgb(79, 129, 188) ;
+		border-radius: 50%;
+		border: 2px solid rgb(53, 101, 158);
+		position: relative;
+	}
+
+	div:before
+	{
+		content: '';
+		display: inline-block;
+		width: 2px;
+		height: 300px;
+		background-color: rgb(53, 101, 158);
+		position: absolute;
+		transform: translateX(-50%);
+		left: 50%;
+	}
+
+		div:after
+	{
+		content: '';
+		display: inline-block;
+		width: 2px;
+		height: 300px;
+		background-color: rgb(53, 101, 158);
+		position: absolute;
+		transform: rotate(90deg);
+		left: 50%;
+	}
+	span
+	{
+
+		position: absolute;
+		top: calc(150px / 2);
+		left:calc(150px / 2);
+	}
+
+	span:nth-child(2)
+	{
+		left: auto;
+		right:calc(150px / 2);
+	}
+		span:nth-child(3)
+	{
+		top: auto;
+		bottom:calc(150px / 2);
+	}
+		span:nth-child(4)
+	{
+		left: auto;
+		top: auto;
+
+		right:calc(150px / 2);
+		bottom:calc(150px / 2);
+
+	}
+
+/*	.container section{
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: 2px;
+		background-color: black;
+
+	}
+
+	span
+	{
+		background-color: red;
+		width: 200px;
+		height: 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}*/
+
+</style>
+<body>
+
+	<!-- lets give numbering in circle also -->
+  <div>
+  	  	<span>1</span>
+  	<span>2</span>
+  	<span>3</span>
+  	<span>4</span>
+
+  </div>
+
+
+<!-- lets create a rectangle now -->
+
+
+<!--   <div class="container">
+  	<section>
+  	<span>1</span>
+  	<span>2</span>
+  	<span>3</span>
+  	<span>4</span>
+  	<span>5</span>
+  	<span>6</span>
+  	<span>7</span>
+  	<span>8</span>
+  	<span>9</span>
+  		
+  	</section>
+
+  	
+  </div> -->
+</body>
+</html>
